@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Lab3.Entities.FarmacoEntity>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h2>Index</h2>
+
+<p>
+    <form asp-controller="ArbolBinario" asp-action="Index" method="get">
+<p>
+    Nombre del producto: <input type="text" name="SearchString" value="@ViewBag.SearchString" />
+    <input type="submit" value="Search" />
+    Total de resultados: @ViewBag.ele
+</p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Descripción
+            </th>
+            <th>
+                Casa productora
+            </th>
+            <th>
+                Precio ($)
+            </th>
+            <th>
+                Existencia
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CasaProductora)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Existencia)
+                </td>
+                <td>
+                    @Html.ActionLink("Comprar", "Details", new { id = item.Nombre })
+
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="container">
+    <div class="col-xs-4 col-sm-offset-4">
+        @if (ViewBag.PageNum > 1)
+        {
+            <a class="btn btn-default" href="@Url.Action("Index", new {SearchString = ViewBag.SearchString, page = ViewBag.PageNum - 1 })">Anterior</a>
+        }
+        @if (ViewBag.PageNum < ViewBag.total)
+        {
+            <a class="btn btn-default" href="@Url.Action("Index", new {SearchString = ViewBag.SearchString, page = ViewBag.PageNum + 1 })">Siguiente</a>
+        }
+
+    </div>
+    Total de páginas: @ViewBag.total
+</div>

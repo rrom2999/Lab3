@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Lab3.Entities.FarmacoEntity>
+
+@{
+    ViewData["Title"] = "Rellenar";
+}
+
+<h2>Rellenar</h2>
+
+<p>
+    <a asp-action="Actualizar">Rellenar productos</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                Casa productora
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio) ($)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Existencia)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CasaProductora)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Existencia)
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>

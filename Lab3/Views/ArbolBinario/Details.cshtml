@@ -1,0 +1,54 @@
+﻿@model Lab3.Entities.FarmacoEntity
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Producto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt>
+            Casa productora
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CasaProductora)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio) ($)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Existencia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Existencia)
+        </dd>
+    </dl>
+</div>
+<form asp-controller="ArbolBinario" asp-action="Details" method="get">
+    <input type="number" name="SearchInt" @*@*value="@ViewBag.SearchInt"*@*@ value="0" min="0" max="@Model.Existencia" />
+    <input type="submit" value="Añadir al carrito" />
+    @Html.Raw(TempData["msg"])
+</form>
+
+<div>
+    
+    <a asp-controller="ArbolBinario" asp-action="Index">Seguir comprando</a>
+</div>
